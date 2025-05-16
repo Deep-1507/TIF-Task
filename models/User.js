@@ -8,10 +8,25 @@ const userSchema = new mongoose.Schema({
         default: () => Snowflake.generate(),
         unique: true,
       },      
-  name: { type: String, maxlength: 64 },
-  email: { type: String, required: true, unique: true, maxlength: 128 },
-  password: { type: String, required: true, select: false },
-  created_at: { type: Date, default: Date.now },
+  name: { 
+    type: String,
+    maxlength: 64 
+},
+  email: { 
+    type: String,
+    required: true,
+    unique: true,
+    maxlength: 128 
+},
+  password: { 
+    type: String,
+    required: true,
+    select: false 
+},
+  created_at: {
+    type: Date,
+    default: Date.now 
+},
 });
 
 userSchema.pre('save', async function (next) {

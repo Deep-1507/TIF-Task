@@ -10,8 +10,7 @@ exports.protect = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Assuming your User model uses _id as primary key
-    const user = await User.findById(decoded.id).select('-password'); // exclude password for safety
+    const user = await User.findById(decoded.id).select('-password');
     if (!user) {
       return res.status(401).json({ status: false, error: 'User not found' });
     }

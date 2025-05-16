@@ -7,11 +7,35 @@ const communitySchema = new mongoose.Schema({
     default: () => Snowflake.generate(),
     unique: true,
   },
-  name: { type: String, required: true, maxlength: 128 },
-  slug: { type: String, required: true, unique: true, maxlength: 255 },
-  owner: { type: String, ref: "User", required: true },
-  created_at: { type: Date, default: Date.now },
-  updated_at: { type: Date, default: Date.now },
+  name: { 
+    type: String, 
+    required: true, 
+    maxlength: 128 
+    
+  },
+  slug: { 
+    type: String, 
+    required: true, 
+    unique: true, 
+    maxlength: 255 
+    
+  },
+  owner: { 
+    type: String, 
+    ref: "User", 
+    required: true 
+    
+  },
+  created_at: { 
+    type: Date, 
+    default: Date.now 
+    
+  },
+  updated_at: { 
+    type: Date, 
+    default: Date.now 
+    
+  },
 });
 
 module.exports = mongoose.model("Community", communitySchema);

@@ -16,7 +16,7 @@ exports.signup = async (req, res, next) => {
           id: user._id,
           name: user.name,
           email: user.email,
-          created_at: user.createdAt,  // note: mongoose timestamps use createdAt, not created_at
+          created_at: user.createdAt,
         },
       },
     });

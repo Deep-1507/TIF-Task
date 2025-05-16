@@ -106,10 +106,8 @@ exports.deleteCommunity = async (req, res) => {
     if (community.owner !== req.user.id)
       return res.status(403).json({ status: false, error: 'Forbidden' });
 
-    // Remove community
     await community.deleteOne();
 
-    // Also remove members of this community (optional)
     await Member.deleteMany({ community: community.id });
 
     res.status(200).json({

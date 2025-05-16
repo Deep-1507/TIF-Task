@@ -10,15 +10,12 @@ exports.createMember = async (req, res) => {
     const comm = await Community.findOne({ id: community });
     if (!comm) return res.status(404).json({ status: false, error: 'Community not found' });
 
-    // Validate user
     const usr = await User.findOne({ id: user });
     if (!usr) return res.status(404).json({ status: false, error: 'User not found' });
 
-    // Validate role
     const rl = await Role.findOne({ id: role });
     if (!rl) return res.status(404).json({ status: false, error: 'Role not found' });
 
-    // Check if already member
     const exists = await Member.findOne({ community, user });
     if (exists) return res.status(400).json({ status: false, error: 'User already member' });
 
@@ -95,11 +92,10 @@ exports.deleteMember = async (req, res) => {
         return res.status(404).json({ status: false, error: 'Member not found' });
       }
   
-      // Find the role of the currently logged-in user in the same community
       const actingMember = await Member.findOne({
         community: memberToDelete.community,
         user: req.user.id,
-      }).populate('role'); // Assuming `role` is populated with role details (name, etc.)
+      }).populate('role');
   
       if (
         !actingMember ||
